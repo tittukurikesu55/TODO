@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Commenthistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Webapp.ViewModel.TaskComments>
+
+<h2> Comment History</h2>
+<br />
+
+Task Name:-
+<br />
+<h3>@Model.First().TaskName</h3>
+<br />
+
+
+@foreach (var task in Model)
+{
+    <div style="border: solid green 1px">
+        <br />
+        <p style="margin-left:15px"><b>Updated time :</b>@task.CreatedTime  </p><br />
+        <p style="margin-left:15px"><b>Comments</b>  </p><br />
+        <p style="margin-left:15px">@task.Comments  </p>
+    </div>
+}
+

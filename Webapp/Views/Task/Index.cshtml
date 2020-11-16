@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Webapp.ViewModel.TaskList>
+
+
+
+<h2>Task Details</h2>
+<hr />
+
+<button class="">@Html.ActionLink("Create Task", "AddTask", "Task")</button></br>
+</br>
+<style>
+    #table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #table td, #table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #table tr:hover {
+            background-color: #ddd;
+        }
+
+        #table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+</style>
+
+<table id="table" class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.ID)</th>
+            <th>Task Type</th>
+            <th>@Html.DisplayNameFor(m => m.TaskName)</th>
+            <th>@Html.DisplayNameFor(m => m.Description)</th>
+            <th>latest Comments</th>
+            <th>@Html.DisplayNameFor(m => m.CreatedTime)</th>
+            <th>@Html.DisplayNameFor(m => m.UpdatedTime)</th>
+            <th>@Html.DisplayNameFor(m => m.Status)</th>
+            <th>CommentHistory</th>
+            <th>Edit</th>
+            <th>Delete</th>
+</thead>
+
+
+    <tbody>
+        @foreach (var task in Model)
+        {
+        <tr>
+            <td>@task.ID</td>
+            <td>@task.Type</td>
+            <td>@task.TaskName</td>
+            <td>@task.Description</td>
+            <td>@task.Comments</td>
+            <td>@task.CreatedTime</td>
+            <td>@task.UpdatedTime</td>
+            <td>@task.Status</td>
+            <td>@Html.ActionLink("CommentHistory", "ViewComments", new { id = task.ID,Name=task.TaskName })</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { id = task.ID })</td>
+            <td>@Html.ActionLink("Delete", "Delete", new { id = task.ID })</td>
+        </tr>
+
+        }
+    </tbody>
+</table>  
